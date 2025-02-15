@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            const planName = getQueryParam("plan");
+            const planPrice = getQueryParam("price");
+
+            document.getElementById("plan-name").innerText = planName;
+            document.getElementById("plan-price").innerText = "$" + planPrice;
+
+            // Correct PayPal URL format
+            document.getElementById("paypal-button").href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=aamerganm@gmail.com&item_name=${planName}&amount=${planPrice}&currency_code=USD&button_subtype=services&no_note=1&bn=PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest`;
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Complete Your Payment</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="reviews.html">Client Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="payment-form">
+        <h2>Confirm Your Purchase</h2>
+        <p>Plan: <strong id="plan-name"></strong></p>
+        <p>Price: <strong id="plan-price"></strong></p>
+
+        <!-- PayPal Payment Button -->
+        <a id="paypal-button" class="pay-button" href="#" target="_blank">Pay Now</a>
+    </section>
+
+    <style>
+        .pay-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #008CBA;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .pay-button:hover {
+            background-color: #005f73;
+        }
+    </style>
+</body>
+</html>
